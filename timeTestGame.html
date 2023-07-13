@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>java script</script></title>
+    <meta charset="UTF-8">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<style type="text/css">
+    body{
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        background-color:grey;
+        color: blue;
+        
+    }
+    #box{
+        
+        height: 200px;
+        width: 200px;
+        display:none;
+        position: relative;
+        background-image: url(image/AAA.png);
+        background-size: cover;
+      
+    }
+</style>
+</head>
+<body>
+    <h1>Test your reactions!</h1>
+    <p>Click on the boxes and circles as quickly as you can</p>
+    <p>your time:<span id="times">0</span>s</p>
+ <div id="box">
+    
+ </div>
+   
+    <script type="text/javascript">
+
+        function getRandomPicture(){
+
+            var picName='ABC'.split(''); 
+           var images='url(image/';
+            for(var i=0; i<3;i++){
+                images+=picName[Math.round(Math.random())];
+            }
+                images+='.png)';
+            
+            return images;
+        }
+            alert(getRandomPicture());
+        
+        var clickedTime; var createdTime; var reactionTime;
+
+        function makeBox() {
+            var time=Math.random();
+        time=time*3000;
+        //alert(time);
+    setTimeout(function(){
+        createdTime=Date.now();
+
+        if(Math.random()>0.5){
+
+        document.getElementById("box").style.borderRadius="100px";
+        }
+        else{
+            document.getElementById("box").style.borderRadius="0px";
+        }
+        var top=Math.random(); var left=Math.random();
+
+        top=top*300;
+
+        left=left*1200;
+
+        document.getElementById("box").style.top=top+"px";
+
+        document.getElementById("box").style.left=left+"px";
+       
+       
+
+        document.getElementById("box").style.backgroundImage=getRandomPicture();
+       
+
+       document.getElementById("box").style.display="block";
+    },time);
+       
+        }
+
+    document.getElementById("box").onclick=function() {
+
+        clickedTime=Date.now();
+
+        reactionTime=(clickedTime-createdTime)/1000;
+
+        document.getElementById("times").innerHTML=reactionTime;
+
+        this.style.display="none";
+         
+        makeBox();
+    }
+    makeBox();
+    
+    </script>
+</body>
+</html>
